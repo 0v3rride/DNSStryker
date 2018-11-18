@@ -11,13 +11,11 @@ from argparse import *;
 from socket import *;
 import os;
 from re import *;
-#from dnspython import
 
 def forwardLookup(cargs): # FQDN --> IP
     hostlist = None;
     domainlist = None
-   #badIpList = ["198.105.254.10", "198.105.244.10"];
-
+    
     try:
         # Check for valid files and read them out and store them in lists by using the newline character as a delimiter
         if os.path.isfile(cargs.domainList) and os.path.isfile(cargs.hostList):
@@ -68,14 +66,6 @@ def resolver(cargs):
         print("[!] You may only do a forward or reverse lookup at any single given time, not both. Please use -hL and -dL for forward lookups and -iL for reverse lookups.");
         exit(0);
 
-    # if cargs.hostList is not None and cargs.domainList is not None:
-    #     forwardLookup(cargs);
-    # elif cargs.ipList is not None:
-    #     reverseLookup(cargs)
-    # elif((cargs.hostList is not None and cargs.domainList is not None and cargs.ipList is not None) or (cargs.hostList is not None and cargs.ipList is not None) or (cargs.domainList is not None and cargs.ipList is not None)):
-    #     print("[!] You may only do a forward or reverse lookup at an single given time, not both. Please use -hL and -dL for forward lookups and -iL for reverse lookups.");
-    #     exit(0);
-
 
 def main():
     # Argument parser
@@ -84,11 +74,6 @@ def main():
     parser.add_argument("-dL", "--domainList", required=False, type=str, help="Absolute path to file with the list of domains (mydomain.org, somedomain.com, college.edu, etc.");
     parser.add_argument("-iL,", "--ipList", required=False, type=str, help="Absolute path to file with the list of IPs for reverse DNS lookup.");
     parser.add_argument("-bL", "--badIPList", required=False, nargs='+', help="Give list of IPs to ignore separated by spaces");
-    # parser.add_argument("-a", "--address", required=False, action="store_true", help="Filter for addresses only (will not include addresses for mail exchange servers");
-    # parser.add_argument("-m", "--mx", required=False, action="store_true", help="Filter for addresses only pertaining to mail exchange servers");
-    # parser.add_argument("-i", "--ips", required=False, action="store_true", help="Only return the IP addresses or FQDNs that are valid");
-    # parser.add_argument("-r", "--resovled", required=False, action="store_true", help="Filter for output for addresses and FQDNs that have been successfully resolved only");
-    # parser.add_argument("--alias", required=False, action="store_true", help="Filter for aliases");
 
     # Parse arguments
     args = parser.parse_args();
